@@ -27,7 +27,7 @@ export default class extends React.Component {
       searchTerm: value
     });
   };
-
+  0;
   searchByTerm = async () => {
     const { searchTerm } = this.state;
     try {

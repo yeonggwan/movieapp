@@ -12,7 +12,8 @@ const Container = styled.div`
 
 export default () => (
   <Container>
-    <span roll="img" aria-label="Loading" />
-    Clock
+    <span role="img" aria-label="Loading">
+      ⏰
+    </span>
   </Container>
 );
