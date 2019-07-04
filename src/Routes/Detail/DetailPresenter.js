@@ -62,7 +62,7 @@ const Data = styled.div`
     padding-bottom: 40px;
     h3 {
       font-size: 20px;
-      font-weight: 600;
+      font-weight: 700;
     }
   }
 `;
