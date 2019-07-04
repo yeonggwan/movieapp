@@ -9,8 +9,8 @@ const Container = styled.div`
   @media screen and (max-width: 600px) {
     margin: 0 auto;
     div {
-      grid-template-columns: repeat(auto-fit, 150px);
-      grid-gap: 20px;
+      grid-template-columns: repeat(auto-fill, 160px);
+      grid-gap: 15px;
       a {
         margin-bottom: 50px;
         /* &:nth-child(1),
