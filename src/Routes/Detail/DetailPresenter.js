@@ -60,15 +60,22 @@ const Data = styled.div`
     width: 100%;
     margin: 30px 0 0 0;
     padding-bottom: 40px;
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    div {
+      margin: 10px 0 15px 0;
+    }
+    p {
+      width: 100%
+      margin-bottom: 20px;
+    }
   }
 `;
 
 const Title = styled.h3`
   font-size: 32px;
-  @media screen and (max-width: 600px) {
-    font-size: 20px;
-    font-weight: 600;
-  }
 `;
 
 const ItemContainer = styled.div`
@@ -86,9 +93,6 @@ const Overview = styled.p`
   opacity: 0.7;
   line-height: 1.5;
   width: 70%;
-  @media screen and (max-width: 600px) {
-    width: 100%;
-  }
 `;
 
 const ProductionBox = styled.div`
@@ -99,6 +103,17 @@ const ProductionBox = styled.div`
   border-radius: 5px;
   @media screen and (max-width: 600px) {
     width: 100%;
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        width: 31%;
+        margin: 0 3.5% 20px 0;
+        :nth-child(3n) {
+          margin-right: 0;
+        }
+      }
+    }
   }
 `;
 
@@ -108,23 +123,14 @@ const ProductionTitle = styled.h2`
 `;
 
 const Production = styled.ul`
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, 80px);
-  grid-gap: 15px; */
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
-
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
 `;
 
 const ProductionList = styled.li`
-  width: 18.4%;
-  margin-right: 2%;
+  width: 10%;
+  margin-right: 1.1111111%;
   &:nth-child(5n) {
     margin-right: 0;
   }
@@ -135,11 +141,6 @@ const ProductionList = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  @media screen and (max-width: 600px) {
-    width: 47.5%;
-    margin-bottom: 20px;
-  }
 `;
 
 const ProductionLogo = styled.img`
@@ -153,12 +154,24 @@ const SeasonTitle = styled(ProductionTitle)``;
 const Season = styled(Production)`
   grid-template-columns: repeat(auto-fill, 125px);
   grid-gap: 25px;
+  @media screen and (max-width: 600px) {
+    justify-content: space-between;
+    li {
+      width: 47.5%;
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 const SeasonList = styled(ProductionList)`
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  width: 18.4%;
+  margin-right: 2%;
+  &:nth-child(5n) {
+    margin-right: 0;
+  }
 `;
 
 const SeasonImg = styled(ProductionLogo)``;
