@@ -56,6 +56,7 @@ const CoverImg = styled.img`
 const Data = styled.div`
   width: 70%;
   margin-left: 20px;
+
   @media screen and (max-width: 600px) {
     width: 100%;
     margin: 30px 0 0 0;
@@ -150,7 +151,7 @@ const ProductionLogo = styled.img`
 `;
 
 const SeasonBox = styled(ProductionBox)`
-  margin-top: 20px;
+  margin: 20px 0 40px 0;
 `;
 
 const SeasonTitle = styled(ProductionTitle)``;

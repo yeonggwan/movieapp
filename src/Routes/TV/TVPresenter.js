@@ -49,7 +49,7 @@ const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => (
           </Section>
         )}
         {airingToday && airingToday.length > 0 && (
-          <Section title="오늘 방송">
+          <Section title="현재 방송중">
             {airingToday.map(show => (
               <Poster
                 key={show.id}

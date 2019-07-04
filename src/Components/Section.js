@@ -13,10 +13,6 @@ const Container = styled.div`
       grid-gap: 15px;
       a {
         margin-bottom: 50px;
-        /* &:nth-child(1),
-        &:nth-child(2) {
-          margin-top: 0;
-        } */
         div {
           height: 210px;
         }
