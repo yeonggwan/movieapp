@@ -7,18 +7,18 @@ const Container = styled.div`
     margin-bottom: 50px;
   }
   @media screen and (max-width: 600px) {
-    padding-bottom: 40px;
+    margin: 0 auto;
     div {
-      grid-template-columns: repeat(auto-fill, 140px);
-      grid-gap: 15px;
+      grid-template-columns: repeat(auto-fit, 150px);
+      grid-gap: 20px;
       a {
-        margin-top: 50px;
-        &:nth-child(1),
+        margin-bottom: 50px;
+        /* &:nth-child(1),
         &:nth-child(2) {
           margin-top: 0;
-        }
+        } */
         div {
-          height: 200px;
+          height: 210px;
         }
       }
     }
