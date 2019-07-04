@@ -262,7 +262,7 @@ const DetailPresenter = ({ result, loading, error }) =>
             )}
           {result.seasons && result.seasons.length > 0 && (
             <SeasonBox>
-              <SeasonTitle>제작회사</SeasonTitle>
+              <SeasonTitle>시즌</SeasonTitle>
               <Season>
                 {result.seasons.map(season => (
                   <SeasonList key={season.id}>
