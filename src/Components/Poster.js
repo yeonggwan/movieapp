@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 const Image = styled.div`
   background-image: url(${props => props.bgUrl});
-  height: 180px;
+  height: 258px;
   background-size: cover;
   border-radius: 4px;
   background-position: center center;
@@ -38,12 +38,17 @@ const ImageContainer = styled.div`
 `;
 
 const Title = styled.span`
+  width: 100%;
   display: block;
-  margin-bottom: 3px;
+  margin: 12px 0 5px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
 `;
 
 const Year = styled.span`
-  font-size: 10px;
+  font-size: 12px;
   color: rgba(255, 255, 255, 0.5);
 `;
 
@@ -66,7 +71,8 @@ const Poster = ({ id, imageUrl, title, rating, year, isMovie = false }) => (
         </Rating>
       </ImageContainer>
       <Title>
-        {title.length > 11 ? `${title.substring(0, 11)}...` : title}
+        {title}
+        {/* title.length > 11 ? `${title.substring(0, 11)}...` :  */}
       </Title>
       <Year>{year}</Year>
     </Container>

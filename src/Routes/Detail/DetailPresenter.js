@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet";
 import Loader from "../../Components/Loader";
 
 const Container = styled.div`
@@ -8,6 +9,9 @@ const Container = styled.div`
   width: 100%;
   position: relative;
   padding: 50px;
+  @media screen and (max-width: 600px) {
+    padding: 20px;
+  }
 `;
 
 const Backdrop = styled.div`
@@ -30,24 +34,41 @@ const Content = styled.div`
   position: relative;
   z-index: 1;
   height: 100%;
+  @media screen and (max-width: 600px) {
+    display: block;
+  }
 `;
 
 const Cover = styled.div`
   width: 30%;
-  background-image: url(${props => props.bgImage});
-  background-position: center center;
-  background-size: cover;
-  height: 100%;
   border-radius: 5px;
+  @media screen and (max-width: 600px) {
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+  }
+`;
+
+const CoverImg = styled.img`
+  width: 100%;
 `;
 
 const Data = styled.div`
   width: 70%;
-  margin-left: 10px;
+  margin-left: 20px;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    margin: 30px 0 0 0;
+    padding-bottom: 40px;
+  }
 `;
 
 const Title = styled.h3`
   font-size: 32px;
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+    font-weight: 600;
+  }
 `;
 
 const ItemContainer = styled.div`
@@ -64,31 +85,120 @@ const Overview = styled.p`
   font-size: 12px;
   opacity: 0.7;
   line-height: 1.5;
-  width: 50%;
+  width: 70%;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+`;
+
+const ProductionBox = styled.div`
+  width: 70%;
+  margin-top: 30px;
+  padding: 20px 10px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+`;
+
+const ProductionTitle = styled.h2`
+  font-size: 18px;
+  font-weight: 600;
+`;
+
+const Production = styled.ul`
+  /* display: grid;
+  grid-template-columns: repeat(auto-fill, 80px);
+  grid-gap: 15px; */
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+`;
+
+const ProductionList = styled.li`
+  width: 18.4%;
+  margin-right: 2%;
+  &:nth-child(5n) {
+    margin-right: 0;
+  }
+  font-size: 16px;
+  color: #000;
+  text-align: center;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 600px) {
+    width: 47.5%;
+    margin-bottom: 20px;
+  }
+`;
+
+const ProductionLogo = styled.img`
+  width: 100%;
+`;
+
+const SeasonBox = styled(ProductionBox)``;
+
+const SeasonTitle = styled(ProductionTitle)``;
+
+const Season = styled(Production)`
+  grid-template-columns: repeat(auto-fill, 125px);
+  grid-gap: 25px;
+`;
+
+const SeasonList = styled(ProductionList)`
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+`;
+
+const SeasonImg = styled(ProductionLogo)``;
+
+const SubTitle = styled.p`
+  margin: 7px 0 5px 0;
+  font-size: 12px;
+  text-align: left;
+`;
+
+const SubYear = styled.p`
+  color: white;
+  font-weight: 400;
+  font-size: 10px;
 `;
 
 const DetailPresenter = ({ result, loading, error }) =>
   loading ? (
-    <Loader />
+    <>
+      <Helmet>
+        <title>Loading | MovieApp</title>
+      </Helmet>
+      <Loader />
+    </>
   ) : (
     <Container>
+      <Helmet>
+        <title>{result.title ? result.title : result.name} | MovieApp</title>
+      </Helmet>
       <Backdrop
         bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
       />
       <Content>
-        <Cover
-          bgImage={
-            result.poster_path
-              ? `https://image.tmdb.org/t/p/original${result.poster_path}`
-              : require("../../Components/assets/noPosterSmall.png")
-          }
-        />
+        <Cover>
+          <CoverImg
+            src={`https://image.tmdb.org/t/p/original${result.poster_path}`}
+          />
+        </Cover>
         <Data>
-          <Title>
-            {result.original_title
-              ? result.original_title
-              : result.original_name}
-          </Title>
+          <Title>{result.title ? result.title : result.name}</Title>
           <ItemContainer>
             <Item>
               {result.release_date
@@ -110,6 +220,61 @@ const DetailPresenter = ({ result, loading, error }) =>
             </Item>
           </ItemContainer>
           <Overview>{result.overview}</Overview>
+          {result.production_companies &&
+            result.production_companies.length > 0 && (
+              <ProductionBox>
+                <ProductionTitle>제작회사</ProductionTitle>
+                <Production>
+                  {result.production_companies.map(logo => (
+                    <ProductionList key={logo.id}>
+                      {logo.logo_path ? (
+                        <ProductionLogo
+                          src={`https://image.tmdb.org/t/p/w200${
+                            logo.logo_path
+                          }`}
+                          alt={logo.name}
+                          title={logo.name}
+                        />
+                      ) : (
+                        logo.name
+                      )}
+                    </ProductionList>
+                  ))}
+                </Production>
+              </ProductionBox>
+            )}
+          {result.seasons && result.seasons.length > 0 && (
+            <SeasonBox>
+              <SeasonTitle>제작회사</SeasonTitle>
+              <Season>
+                {result.seasons.map(season => (
+                  <SeasonList key={season.id}>
+                    {season.poster_path ? (
+                      <SeasonImg
+                        src={`https://image.tmdb.org/t/p/w200${
+                          season.poster_path
+                        }`}
+                        alt={season.name}
+                        title={season.name}
+                      />
+                    ) : (
+                      <SeasonImg
+                        src={require("../../Components/assets/noPosterSmall.png")}
+                        alt={season.name}
+                        title={season.name}
+                      />
+                    )}
+                    <SubTitle>{season.name}</SubTitle>
+                    <SubYear>
+                      {season.air_date
+                        ? season.air_date.substring(0, 4)
+                        : "Unknown"}
+                    </SubYear>
+                  </SeasonList>
+                ))}
+              </Season>
+            </SeasonBox>
+          )}
         </Data>
       </Content>
     </Container>
